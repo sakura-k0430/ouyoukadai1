@@ -1,0 +1,118 @@
+
+Book モデルに関するテスト
+  実際に保存してみる
+[32m    有効な投稿内容の場合は保存されるか[0m
+  空白のバリデーションチェック
+[32m    titleが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか[0m
+[32m    bodyが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか[0m
+  titleを空白で投稿した場合に画面にエラーメッセージが表示されているか
+[32m    エラーメッセージは正しく表示されるか[0m
+  bodyを空白で投稿した場合に画面にエラーメッセージが表示されているか
+[32m    エラーメッセージは正しく表示されるか[0m
+
+投稿のテスト
+  トップ画面(root_path)のテスト
+    表示の確認
+[32m      トップ画面(root_path)に一覧ページへのリンクが表示されているか[0m
+[32m      root_pathが"/"であるか[0m
+  一覧画面のテスト
+    一覧の表示とリンクの確認
+[32m      bookの一覧表示(tableタグ)と投稿フォームが同一画面に表示されているか[0m
+[32m      bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか[0m
+[32m      Create Bookボタンが表示される[0m
+    投稿処理に関するテスト
+[32m      投稿に成功しサクセスメッセージが表示されるか[0m
+[32m      投稿に失敗する[0m
+[32m      投稿後のリダイレクト先は正しいか[0m
+    book削除のテスト
+[32m      bookの削除[0m
+  詳細画面のテスト
+    表示の確認
+[32m      本のタイトルと感想が画面に表示されていること[0m
+[32m      Editリンクが表示される[0m
+[32m      Backリンクが表示される[0m
+    リンクの遷移先の確認
+[32m      Editの遷移先は編集画面か[0m
+[32m      Backの遷移先は一覧画面か[0m
+  編集画面のテスト
+    表示の確認
+[31m      編集前のタイトルと感想がフォームに表示(セット)されている (FAILED - 1)[0m
+[31m      Update Bookボタンが表示される (FAILED - 2)[0m
+[32m      Showリンクが表示される[0m
+[32m      Backリンクが表示される[0m
+    リンクの遷移先の確認
+[32m      Showの遷移先は詳細画面か[0m
+[32m      Backの遷移先は一覧画面か[0m
+    更新処理に関するテスト
+[31m      更新に成功しサクセスメッセージが表示されるか (FAILED - 3)[0m
+[31m      更新に失敗しエラーメッセージが表示されるか (FAILED - 4)[0m
+[31m      更新後のリダイレクト先は正しいか (FAILED - 5)[0m
+
+Failures:
+
+  1) 投稿のテスト 編集画面のテスト 表示の確認 編集前のタイトルと感想がフォームに表示(セット)されている
+     [31mFailure/Error: expect(page).to have_field 'book[title]', with: book.title[0m
+     [31m  expected to find visible field "book[title]" that is not disabled with value "hoge" but there were no matches. Also found "", which matched the selector but not all filters. Expected value to be "hoge" but was nil[0m
+     [36m# ./spec/system/books_spec.rb:118:in `block (4 levels) in <main>'[0m
+
+  2) 投稿のテスト 編集画面のテスト 表示の確認 Update Bookボタンが表示される
+     [31mFailure/Error: expect(page).to have_button 'Update Book'[0m
+     [31m  expected to find button "Update Book" that is not disabled but there were no matches[0m
+     [36m# ./spec/system/books_spec.rb:122:in `block (4 levels) in <main>'[0m
+
+  3) 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に成功しサクセスメッセージが表示されるか
+     [31mFailure/Error: click_button 'Update Book'[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find button "Update Book" that is not disabled[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:310:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/base.rb:83:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:299:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:60:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/actions.rb:58:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/session.rb:771:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `call'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `click_button'[0m
+     [36m# ./spec/system/books_spec.rb:149:in `block (4 levels) in <main>'[0m
+
+  4) 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に失敗しエラーメッセージが表示されるか
+     [31mFailure/Error: click_button 'Update Book'[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find button "Update Book" that is not disabled[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:310:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/base.rb:83:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:299:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:60:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/actions.rb:58:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/session.rb:771:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `call'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `click_button'[0m
+     [36m# ./spec/system/books_spec.rb:155:in `block (4 levels) in <main>'[0m
+
+  5) 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新後のリダイレクト先は正しいか
+     [31mFailure/Error: click_button 'Update Book'[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find button "Update Book" that is not disabled[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:310:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/base.rb:83:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:299:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/finders.rb:60:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/node/actions.rb:58:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/session.rb:771:in `click_button'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `call'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.37.1/lib/capybara/dsl.rb:52:in `click_button'[0m
+     [36m# ./spec/system/books_spec.rb:161:in `block (4 levels) in <main>'[0m
+
+Finished in 1 second (files took 1.42 seconds to load)
+[31m28 examples, 5 failures[0m
+
+Failed examples:
+
+[31mrspec ./spec/system/books_spec.rb:117[0m [36m# 投稿のテスト 編集画面のテスト 表示の確認 編集前のタイトルと感想がフォームに表示(セット)されている[0m
+[31mrspec ./spec/system/books_spec.rb:121[0m [36m# 投稿のテスト 編集画面のテスト 表示の確認 Update Bookボタンが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:146[0m [36m# 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に成功しサクセスメッセージが表示されるか[0m
+[31mrspec ./spec/system/books_spec.rb:152[0m [36m# 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に失敗しエラーメッセージが表示されるか[0m
+[31mrspec ./spec/system/books_spec.rb:158[0m [36m# 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新後のリダイレクト先は正しいか[0m
+
