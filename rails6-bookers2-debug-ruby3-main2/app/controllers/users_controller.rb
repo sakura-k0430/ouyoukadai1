@@ -29,13 +29,6 @@ class UsersController < ApplicationController
     else
       redirect_to "edit"
     end
-
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
-    else
-      render edit_user_path
-    end
   end
 
   private
