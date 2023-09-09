@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   
   resources :users, only: [:index,:show,:edit,:update]do
+    get "search_form" => "users#search_form"
     member do
       get :follows, :followers
     end

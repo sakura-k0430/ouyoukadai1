@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     end
     @books = @user.books
     @book = Book.new
+    @today_book = @books.created_yesterday
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
   end
 
 
@@ -47,6 +51,12 @@ class UsersController < ApplicationController
     else
       redirect_to "edit"
     end
+  end
+
+  def search_form
+    @user = User.find(params[:user_id]) 
+    @books = @user.books.where(created_at: params[:created_at].to_date.all_day)
+    render :search_form 
   end
 
   private
